@@ -21,7 +21,7 @@ ___
 - [x] **given** the user has entered a valid zip code
 - [x] **when** the user presses the enter key
 - [x] **or** clicks the submit button
-**then** the current weather for the provided zip code should be displayed, which includes
+- [x] **then** the current weather for the provided zip code should be displayed, which includes
 
 - Temperature
 - Conditions
@@ -29,13 +29,13 @@ ___
 - Wind speed
 - An affordance to view the forecast for the current day, the next three days, or the next 7 days
 
-**given** the user is viewing the current forecast
-**when** the user clicks on the link to view the 3 day forecast
-**then** the current data (see above), and the data for the next 3 days should be displayed
+- [x] **given** the user is viewing the current forecast
+- [x] **when** the user clicks on the link to view the 3 day forecast
+- [x] **then** the current data (see above), and the data for the next 3 days should be displayed
 
-**given** the user is viewing the current forecast
-**when** the user clicks on the link to view the 5 day forecast
-**then** the current data (see above), and the data for the next 5 days should be displayed
+- [x] **given** the user is viewing the current forecast
+- [x] **when** the user clicks on the link to view the 5 day forecast
+- [x] **then** the current data (see above), and the data for the next 5 days should be displayed
 
 #### Note
 

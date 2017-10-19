@@ -4,12 +4,6 @@ const dom = require('./dom');
 
 let owmKey;
 let currentZip;
-let averageTemp;
-let highTemp;
-let lowTemp;
-let conditionsDescription;
-let airPressure;
-let windSpeed;
 
 const owmConfiguration = ( zip ) => {
     return new Promise(( resolve, reject ) => {
@@ -24,8 +18,7 @@ const owmConfiguration = ( zip ) => {
 
 const getConfigData = (zip) => {
     owmConfiguration(zip).then(( weather ) => {         
-        showCurrentDayForecast(weather);
-        // showCurrentDayForecast(results);
+        showCurrentDayForecast(weather);        
     }).catch(( error ) => {
         console.log('error in getConfig:', error );
     });
@@ -39,7 +32,6 @@ const showCurrentDayForecast = (weather) => {
     let hourlyForecasts = [];
     hourlyForecasts.push(weather.list);
     dom.currentDayDomString(weather, hourlyForecasts);
-    // dom.currentDayDomString(weather);
 };
 
 const showExtendedForecast = (targetId) => {
@@ -52,8 +44,4 @@ const showExtendedForecast = (targetId) => {
     });
 };
 
-const showFiveDayForecast = () => {
-
-};
-
-module.exports = { setKey, getConfigData, showExtendedForecast, showFiveDayForecast };
+module.exports = { setKey, getConfigData, showExtendedForecast };

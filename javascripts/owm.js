@@ -1,22 +1,47 @@
 'use strict';
 
-let owmKey;
+const dom = require('./dom');
 
-const tmdbConfiguration = () => {
-    return new Promise((resolve, reject) => {
-        $.ajax(`http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=${owmKey}`).done((data) => {
-        resolve(data);
-        console.log('data', data);
-        }).fail((error) => {
-            reject(error);
+let owmKey;
+let currentZip;
+
+const owmConfiguration = ( zip ) => {
+    return new Promise(( resolve, reject ) => {
+        $.ajax(`http://api.openweathermap.org/data/2.5/forecast?zip=${zip},us&APPID=${owmKey}&units=imperial`).done((data) => {
+        resolve( data );
+        currentZip = zip;        
+        }).fail(( error ) => {
+            reject( error );
         });
     });
 };
 
-const setKey = (apiKey) => {
-    owmKey = apiKey;
-    tmdbConfiguration();
-    // getConfig();
+const getConfigData = (zip) => {
+    owmConfiguration(zip).then(( weather ) => {         
+        showCurrentDayForecast(weather);        
+    }).catch(( error ) => {
+        console.log('error in getConfig:', error );
+    });
 };
 
-module.exports = { setKey };
+const setKey = ( apiKey ) => {
+    owmKey = apiKey;        
+};
+
+const showCurrentDayForecast = (weather) => {
+    let hourlyForecasts = [];
+    hourlyForecasts.push(weather.list);
+    dom.currentDayDomString(weather, hourlyForecasts);
+};
+
+const showExtendedForecast = (targetId) => {
+    owmConfiguration(currentZip).then(( weather ) => { 
+        let hourlyForecasts = [];
+        hourlyForecasts.push(weather.list);
+        dom.extendedForecastDomString(weather, hourlyForecasts, targetId);
+    }).catch(( error ) => {
+        console.log('error in getConfig:', error );
+    });
+};
+
+module.exports = { setKey, getConfigData, showExtendedForecast };

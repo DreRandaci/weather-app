@@ -1,6 +1,9 @@
 'use strict';
 
-const submitButtonEvent = () => {
+const owm = require('./owm');
+const dom = require('./dom');
+
+const submitBtnClick = () => {
     $('#subBtn').click( (e) => {        
         let val = $('#input').val();
         validateZipLength(val);        
@@ -10,18 +13,32 @@ const submitButtonEvent = () => {
 const pressEnter = () => {
     $(document).keypress( (e) => {
         if (e.key === "Enter") {
-            let val = $('#input').val();
-            validateZipLength(val);
+            let zip = $('#input').val();
+            validateZipLength(zip);
         } 
     });
 };
 
-const validateZipLength = (val) => {
-    if (val.length === 5) {
-        
+const extendedForecastClick = () => {
+    $(document).click(( e ) => {
+        if (e.target.id === 'threeDayBtn') {
+            let targetId = e.target.id;            
+            owm.showExtendedForecast(targetId);
+        } else if (e.target.id === 'fiveDayBtn') {
+            let targetId = e.target.id;            
+            owm.showExtendedForecast(targetId);
+        }
+    });
+};
+
+const validateZipLength = (zip) => {
+    if (zip.length === 5) {
+        dom.clearDom();
+        owm.getConfigData(zip);
     } else {
-        
+        //enter a valid zip code        
+        console.log('enter a valid zip');
     }                 
 };
 
-module.exports = {pressEnter, submitButtonEvent};
+module.exports = { pressEnter, submitBtnClick, extendedForecastClick };

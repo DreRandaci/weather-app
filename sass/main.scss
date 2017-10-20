@@ -1,4 +1,22 @@
 @import 'variables';
+@import 'colors';
+
 body {
     background-color: $body-color;
+}
+
+#weather {
+    margin-top: $margin-top;
+}
+
+.temp-high {
+    color: $temp-red;
+}
+
+.temp-low {
+    color: $temp-blue;
+}
+
+.temp-default {
+    color: $temp-yellow;
 }

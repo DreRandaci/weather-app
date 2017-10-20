@@ -1,2 +1,14 @@
 body {
   background-color: #cbcbcb; }
+
+#weather {
+  margin-top: 25px; }
+
+.temp-high {
+  color: #b40000; }
+
+.temp-low {
+  color: #3535ca; }
+
+.temp-default {
+  color: #dbdb0f; }

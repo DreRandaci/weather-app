@@ -5,8 +5,8 @@ const dom = require('./dom');
 
 const submitBtnClick = () => {
     $('#subBtn').click( (e) => {        
-        let val = $('#input').val();
-        validateZipLength(val);        
+        let zip = $('#input').val();        
+        validateZip(zip);        
     });
 };
 
@@ -14,7 +14,7 @@ const pressEnter = () => {
     $(document).keypress( (e) => {
         if (e.key === "Enter") {
             let zip = $('#input').val();
-            validateZipLength(zip);
+            validateZip(zip);
         } 
     });
 };
@@ -22,22 +22,29 @@ const pressEnter = () => {
 const extendedForecastClick = () => {
     $(document).click(( e ) => {
         if (e.target.id === 'threeDayBtn') {
-            let targetId = e.target.id;            
+            let targetId = e.target.id;   
+            dom.clearExtDom();         
             owm.showExtendedForecast(targetId);
         } else if (e.target.id === 'fiveDayBtn') {
-            let targetId = e.target.id;            
+            let targetId = e.target.id; 
+            dom.clearExtDom();                       
             owm.showExtendedForecast(targetId);
         }
     });
 };
 
-const validateZipLength = (zip) => {
+const validateZip = (zip) => {
+    if ( typeof zip === 'string' ) {
+        $('#invalidContainer').html(`<p class="text-danger">Please Enter A Valid Number<p>`);    
+    }
+    parseInt(zip);
     if (zip.length === 5) {
+        $('#invalidContainer').empty();
         dom.clearDom();
+        dom.clearExtDom();
         owm.getConfigData(zip);
     } else {
-        //enter a valid zip code        
-        console.log('enter a valid zip');
+        $('#invalidContainer').html(`<p class="text-danger">Please Enter A Valid Number<p>`);    
     }                 
 };
 

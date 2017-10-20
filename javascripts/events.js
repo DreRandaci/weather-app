@@ -35,7 +35,7 @@ const extendedForecastClick = () => {
 
 const validateZip = (zip) => {
     if ( typeof zip === 'string' ) {
-        $('#invalidContainer').html(`<p class="text-danger">Please Enter A Valid Number<p>`);    
+        $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A <strong>Valid</strong> Number<h5>`);    
     }
     parseInt(zip);
     if (zip.length === 5) {
@@ -44,7 +44,7 @@ const validateZip = (zip) => {
         dom.clearExtDom();
         owm.getConfigData(zip);
     } else {
-        $('#invalidContainer').html(`<p class="text-danger">Please Enter A Valid Number<p>`);    
+        $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A <strong>Valid</strong> Number<h5>`);    
     }                 
 };
 

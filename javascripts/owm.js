@@ -29,9 +29,7 @@ const setKey = ( apiKey ) => {
 };
 
 const showCurrentDayForecast = (weather) => {
-    console.log('weather:', weather);
-    // let hourlyForecasts = [];
-    // hourlyForecasts.push(weather.list);
+    console.log(weather);
     dom.currentDayDomString(weather);
 };
 

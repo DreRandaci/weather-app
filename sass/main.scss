@@ -5,7 +5,11 @@ body {
     background-color: $body-color;
 }
 
-#weather {
+.modal-color {
+    background-color: $background-light;
+}
+
+.added-margin {
     margin-top: $margin-top;
 }
 
@@ -20,3 +24,4 @@ body {
 .temp-default {
     color: $temp-yellow;
 }
+

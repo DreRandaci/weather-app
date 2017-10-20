@@ -1,7 +1,10 @@
 body {
-  background-color: #cbcbcb; }
+  background-color: #6eaacf; }
 
-#weather {
+.modal-color {
+  background-color: #ebebeb; }
+
+.added-margin {
   margin-top: 25px; }
 
 .temp-high {
@@ -11,4 +14,4 @@ body {
   color: #3535ca; }
 
 .temp-default {
-  color: #dbdb0f; }
+  color: #ffe605; }

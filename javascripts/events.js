@@ -23,11 +23,11 @@ const extendedForecastClick = () => {
     $(document).click(( e ) => {
         if (e.target.id === 'threeDayBtn') {
             let targetId = e.target.id;   
-            dom.clearExtDom();         
+            dom.clearExtDom();                     
             owm.showExtendedForecast(targetId);
         } else if (e.target.id === 'fiveDayBtn') {
             let targetId = e.target.id; 
-            dom.clearExtDom();                       
+            dom.clearExtDom();                        
             owm.showExtendedForecast(targetId);
         }
     });
@@ -35,17 +35,22 @@ const extendedForecastClick = () => {
 
 const validateZip = (zip) => {
     if ( typeof zip === 'string' ) {
-        $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A <strong>Valid</strong> Number<h5>`);    
+        $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A Valid <strong>Number</strong><h5>`);    
     }
     parseInt(zip);
     if (zip.length === 5) {
         $('#invalidContainer').empty();
         dom.clearDom();
         dom.clearExtDom();
+        hideWthrIcons();           
         owm.getConfigData(zip);
     } else {
-        $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A <strong>Valid</strong> Number<h5>`);    
+        $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A Valid <strong>Number</strong><h5>`);
     }                 
+};
+
+const hideWthrIcons = () => {
+    $('#weatherImgs').hide();
 };
 
 module.exports = { pressEnter, submitBtnClick, extendedForecastClick };

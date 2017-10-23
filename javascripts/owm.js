@@ -29,15 +29,14 @@ const setKey = ( apiKey ) => {
 };
 
 const showCurrentDayForecast = (weather) => {
-    let hourlyForecasts = [];
-    hourlyForecasts.push(weather.list);
-    dom.currentDayDomString(weather, hourlyForecasts);
+    console.log(weather);
+    dom.currentDayDomString(weather);
 };
 
-const showExtendedForecast = (targetId) => {
+const showExtendedForecast = (targetId) => {    
     owmConfiguration(currentZip).then(( weather ) => { 
         let hourlyForecasts = [];
-        hourlyForecasts.push(weather.list);
+        hourlyForecasts.push(weather.list);        
         dom.extendedForecastDomString(weather, hourlyForecasts, targetId);
     }).catch(( error ) => {
         console.log('error in getConfig:', error );

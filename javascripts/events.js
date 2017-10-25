@@ -42,7 +42,7 @@ const validateZip = (zip) => {
         $('#invalidContainer').empty();
         dom.clearDom();
         dom.clearExtDom();
-        hideWthrIcons();           
+        hideWthrIcons();        
         owm.getConfigData(zip);
     } else {
         $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A Valid <strong>Number</strong><h5>`);
@@ -53,4 +53,10 @@ const hideWthrIcons = () => {
     $('#weatherImgs').hide();
 };
 
-module.exports = { pressEnter, submitBtnClick, extendedForecastClick };
+const init = () => {
+    pressEnter();
+    submitBtnClick();
+    extendedForecastClick();
+};
+
+module.exports = { pressEnter, submitBtnClick, extendedForecastClick, init };

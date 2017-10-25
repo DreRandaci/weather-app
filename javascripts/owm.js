@@ -29,7 +29,6 @@ const setKey = ( apiKey ) => {
 };
 
 const showCurrentDayForecast = (weather) => {
-    console.log(weather);
     dom.currentDayDomString(weather);
 };
 

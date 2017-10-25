@@ -10,6 +10,7 @@ body {
   color: #161616;
   font-family: 'Roboto', sans-serif;  
   background-color: currentColor;
+  padding-bottom: 70px;
 }
 
 #weatherImgs {
@@ -323,4 +324,8 @@ body {
 
 .temp-default {
     color: $temp-yellow;
+}
+
+.width {
+  width: 200px;
 }

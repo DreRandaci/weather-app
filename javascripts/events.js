@@ -2,6 +2,7 @@
 
 const owm = require('./owm');
 const dom = require('./dom');
+const firebaseApi = require('./firebaseApi');
 
 const submitBtnClick = () => {
     $('#subBtn').click( (e) => {        
@@ -53,10 +54,27 @@ const hideWthrIcons = () => {
     $('#weatherImgs').hide();
 };
 
+const showInputContainer = () => {
+    $('.inputContainer').removeClass('hidden');
+    $("#googleBtn").hide();
+};
+
 const init = () => {
     pressEnter();
     submitBtnClick();
     extendedForecastClick();
+    googleAuth();
 };
 
-module.exports = { pressEnter, submitBtnClick, extendedForecastClick, init };
+const googleAuth = () => {
+    $("#googleBtn").click( ( e ) => {
+        firebaseApi.authenticateGoogle().then(( result ) => {
+            console.log('results in googleAuth:', result);
+            showInputContainer();
+        }).catch(( error ) => {
+            console.log('error in authenticateGoogle');
+        });
+    });
+};
+
+module.exports = { init };

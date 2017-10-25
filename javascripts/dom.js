@@ -36,7 +36,7 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
         str +=     `<table class="table">`;
         str +=       `<tr>`;                        
         str +=       `<th>Date</th>`;    
-        str +=       `<th>Temperature H/L</th>`;                                             
+        str +=       `<th>High</th>`;                                             
         str +=       `<th>Conditions</th>`;                   
         str +=       `<th>Air Pressure</th>`;
         str +=       `<th>Wind Speed MP/H</th>`;                                                  
@@ -45,14 +45,14 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
         hourlyForecasts.forEach(( wthr, ind ) => {            
             wthr.forEach(( dt, i ) => {                
                 if (i === 4 || i === 12 || i === 20) {                                                                                                                                                                                                            
-                    str +=       `<td>${dt.dt_txt}</td>`;
-                if (dt.main.temp.toFixed() <= 75 && dt.main.temp.toFixed() > 50) {                      
-                    str +=       `<td><span class='temp-default'>${dt.main.temp_max.toFixed()}˚/${weather.list[ind].main.temp_min.toFixed()}˚</span></td>`;             
-                                } else if (dt.main.temp.toFixed() > 75) {
-                    str +=       `<td><span class='temp-high'>${dt.main.temp_max.toFixed()}˚/${weather.list[ind].main.temp_min.toFixed()}˚</span></td>`;             
-                                } else {
-                    str +=       `<td><span class='temp-low'>${weather.list[ind].main.temp_max.toFixed()}˚/${weather.list[ind].main.temp_min.toFixed()}˚</span></td>`;             
-                                }                        
+                    str +=       `<td>${dt.dt_txt}</td>`;     
+                    if (dt.main.temp_max.toFixed() <= 75 && dt.main.temp_max.toFixed() > 50) {                      
+                    str +=       `<td><span class='temp-default'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
+                    } else if (dt.main.temp_max.toFixed() > 75) {  
+                        str +=       `<td><span class='temp-high'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
+                    } else {
+                        str +=       `<td><span class='temp-low'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
+                    }                          
                     str +=       `<td>${dt.weather[0].description}</td>`;                   
                     str +=       `<td>${dt.main.pressure}</td>`;                              
                     str +=       `<td>${dt.wind.speed}MP/H</td>`;                    
@@ -66,7 +66,7 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
         str +=     `<table class="table">`; 
         str +=       `<tr>`;                        
         str +=       `<th>Date</th>`;    
-        str +=       `<th>Temperature H/L</th>`;                                             
+        str +=       `<th>High</th>`;                                             
         str +=       `<th>Conditions</th>`;                   
         str +=       `<th>Air Pressure</th>`;
         str +=       `<th>Wind Speed MP/H</th>`;                                                  
@@ -75,18 +75,18 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
         hourlyForecasts.forEach(( wthr, ind ) => {
             wthr.forEach(( dt, i ) => {                
                 if (i === 4 || i === 12 || i === 20 || i === 28 || i === 36) {                                                                                                     
-                    str +=       `<td>${dt.dt_txt}</td>`;
-                    if (dt.main.temp.toFixed() <= 75 && dt.main.temp.toFixed() > 50) {                      
-                        str +=       `<td><span class='temp-default'>${dt.main.temp_max.toFixed()}˚/${weather.list[ind].main.temp_min.toFixed()}˚</span></td>`;             
-                                    } else if (dt.main.temp.toFixed() > 75) {
-                        str +=       `<td><span class='temp-high'>${dt.main.temp_max.toFixed()}˚/${weather.list[ind].main.temp_min.toFixed()}˚</span></td>`;             
-                                    } else {
-                        str +=       `<td><span class='temp-low'>${weather.list[ind].main.temp_max.toFixed()}˚/${weather.list[ind].main.temp_min.toFixed()}˚</span></td>`;             
-                                    }                        
-                        str +=       `<td>${dt.weather[0].description}</td>`;                   
-                        str +=       `<td>${dt.main.pressure}</td>`;                              
-                        str +=       `<td>${dt.wind.speed}MP/H</td>`;                    
-                        str +=       `</tr>`;                
+                    str +=       `<td>${dt.dt_txt}</td>`;                   
+                    if (dt.main.temp_max.toFixed() <= 75 && dt.main.temp_max.toFixed() > 50) {                      
+                        str +=       `<td><span class='temp-default'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
+                        } else if (dt.main.temp_max.toFixed() > 75) {  
+                            str +=       `<td><span class='temp-high'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
+                        } else {
+                            str +=       `<td><span class='temp-low'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
+                        }                           
+                    str +=       `<td>${dt.weather[0].description}</td>`;                   
+                    str +=       `<td>${dt.main.pressure}</td>`;                              
+                    str +=       `<td>${dt.wind.speed}MP/H</td>`;                    
+                    str +=       `</tr>`;                
                 } 
             });          
         });

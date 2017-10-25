@@ -2,6 +2,14 @@
 	"apiKey": {
 		"owm": {
 			"apiKey": "xxxxxxxxxx"
+		},
+		"firebaseKeys": {
+			"apiKey": "",
+			"authDomain": "",
+			"databaseURL": "",
+			"projectId": "",
+			"storageBucket": "",
+			"messagingSenderId": ""
 		}
 	}
 }

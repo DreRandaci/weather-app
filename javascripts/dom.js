@@ -4,8 +4,8 @@ const currentDayDomString = ( weather ) => {
     let str = '';
     str += `<div class="row">`;
     str +=      `<div class="col-md-6 col-md-offset-3">`;
-    str +=          `<div class="panel panel-default animated fadeIn opacity">`;
-    str +=              `<div class="panel-heading"><h2>${weather.city.name}</h2><p>${weather.city.country}</p></div>`;
+    str +=          `<div class="panel panel-default animated fadeIn opacity">`;    
+    str +=              `<div class="panel-heading"><h2>${weather.city.name}</h2><p>${weather.city.country}</p></div>`;    
     str +=                  `<div class="panel-body panel-color">`;
     str +=                      `<div class="caption">`;  
                                 if (weather.list[0].main.temp.toFixed() <= 75 && weather.list[0].main.temp.toFixed() > 50) {                      
@@ -19,7 +19,7 @@ const currentDayDomString = ( weather ) => {
     str +=                           `<h4>Conditions: ${weather.list[0].weather[0].description}</h4>`;                   
     str +=                           `<h4>Air Pressure: ${weather.list[0].main.pressure}</h4>`;                              
     str +=                           `<h4>Wind Speed: ${weather.list[0].wind.speed}mp/h</h4>`;                
-    str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">3 Day Forecast</button> <button type='button' id="fiveDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">5 Day Forecast</button>`;
+    str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">3 Day Forecast</button> <button type='button' id="fiveDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">5 Day Forecast</button> <button type='button' id='saveForecastBtn' class='btn btn-success'>Save Forecast</button>`;
     str +=                      `</div>`;
     str +=                  `</div>`;
     str +=              `</div>`;

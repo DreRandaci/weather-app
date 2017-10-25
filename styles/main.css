@@ -9,7 +9,8 @@ html *:after {
 body {
   color: #161616;
   font-family: 'Roboto', sans-serif;
-  background-color: currentColor; }
+  background-color: currentColor;
+  padding-bottom: 70px; }
 
 #weatherImgs {
   text-align: center;
@@ -275,3 +276,6 @@ body {
 
 .temp-default {
   color: #ffe605; }
+
+.width {
+  width: 200px; }

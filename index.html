@@ -11,34 +11,85 @@
     <link rel="stylesheet" type="text/css" href="./styles/main.css">
 </head>
 <body>    
-    
+        <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-right">
+                                  <li><a id='weatherHome'>Forecast <span class="sr-only">(current)</span></a></li>
+                                  <li><a id='myWeather'>My Weather</a></li>
+                                </ul>
+                        </div>
+                </div>
+              </nav>
     <div class='container'>                
         <div class='jumbotron added-margin text-center'>
-            <h1>Weather App</h1>
+            <h1>Weather</h1>
         </div>
     </div>
 
-<div id='invalidContainer' class='text-center'></div>
-
-    <div class='container added-margin'>
-        <div class="row">        
-                <div class="col-xs-4 col-xs-offset-4 hidden inputContainer">
-                    <div class="input-group">
-                    <input type="text" id='input' class="form-control" aria-label="..." placeholder="Enter Zip">
-                    <div class="input-group-btn">
-                        <button type="button" id='subBtn' class="btn btn-warning" aria-expanded="false">Submit</button>
-                    </div><!-- /btn-group -->
-                    </div><!-- /input-group -->                                        
-                </div><!-- /.col-lg-6 -->
-            </div><!-- /.row -->            
-        </div>
-    </div>
+    <main id='weatherImgs'>
+            <div class="icon sun-shower">
+                    <div class="cloud"></div>
+                    <div class="sun">
+                      <div class="rays"></div>
+                    </div>
+                    <div class="rain"></div>
+                  </div>
+                  
+                  <div class="icon thunder-storm">
+                    <div class="cloud"></div>
+                    <div class="lightning">
+                      <div class="bolt"></div>
+                      <div class="bolt"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="icon cloudy">
+                    <div class="cloud"></div>
+                    <div class="cloud"></div>
+                  </div>
+                  
+                  <div class="icon flurries">
+                    <div class="cloud"></div>
+                    <div class="snow">
+                      <div class="flake"></div>
+                      <div class="flake"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="icon sunny">
+                    <div class="sun">
+                      <div class="rays"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="icon rainy">
+                    <div class="cloud"></div>
+                    <div class="rain"></div>
+                  </div>
+    </main>
+    <div id='invalidContainer' class='text-center'></div>
     
+        <div class='container added-margin hidden inputContainer'>
+            <div class="row">        
+                    <div class="col-xs-4 col-xs-offset-4">
+                        <div class="input-group">
+                        <input type="text" id='input' class="form-control" aria-label="..." placeholder="Enter Zip">
+                        <div class="input-group-btn">
+                            <button type="button" id='subBtn' class="btn btn-warning" aria-expanded="false">Submit</button>
+                        </div><!-- /btn-group -->
+                        </div><!-- /input-group -->                                        
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->            
+            </div>
+        </div>
     <div id='authScreenContainer' class='text-center'>
         <h1>Sign In</h1>
-        <button class='btn btn-lg btn-default' id='googleBtn'>
-            <img width='350px' src="https://i.stack.imgur.com/XzoRm.png">
-        </button>              
+        <div class='' id='googleBtn'>
+            <a class="width btn btn-lg btn-block btn-social btn-google">
+                <span class="fa fa-google"></span> Sign in with Google
+            </a>
+        </div>              
       </div>
     <div class='container'>
         <div id='weather' class='added-margin'></div>
@@ -55,58 +106,7 @@
         </div>
         </div>
         
-        <main id='weatherImgs'>
-                <div class="icon sun-shower">
-                        <div class="cloud"></div>
-                        <div class="sun">
-                          <div class="rays"></div>
-                        </div>
-                        <div class="rain"></div>
-                      </div>
-                      
-                      <div class="icon thunder-storm">
-                        <div class="cloud"></div>
-                        <div class="lightning">
-                          <div class="bolt"></div>
-                          <div class="bolt"></div>
-                        </div>
-                      </div>
-                      
-                      <div class="icon cloudy">
-                        <div class="cloud"></div>
-                        <div class="cloud"></div>
-                      </div>
-                      
-                      <div class="icon flurries">
-                        <div class="cloud"></div>
-                        <div class="snow">
-                          <div class="flake"></div>
-                          <div class="flake"></div>
-                        </div>
-                      </div>
-                      
-                      <div class="icon sunny">
-                        <div class="sun">
-                          <div class="rays"></div>
-                        </div>
-                      </div>
-                      
-                      <div class="icon rainy">
-                        <div class="cloud"></div>
-                        <div class="rain"></div>
-                      </div>
-        </main>
-        <nav class="navbar navbar-inverse navbar-fixed-bottom">
-            <div class="width center-block">
-                <a class="btn btn-block btn-social btn-twitter">
-                    <span class="fa fa-twitter"></span> Share on Twitter
-                </a>
-                <a class="btn btn-block btn-social btn-facebook">
-                    <span class="fa fa-facebook"></span> Share on Facebook
-                </a>        
-            </div>
-        </nav>
-    
+            
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>        
     <script type="text/javascript" src="./lib/node_modules/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="./lib/node_modules/bootstrap/dist/js/bootstrap.js"></script>

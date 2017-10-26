@@ -9,6 +9,7 @@ const owmConfiguration = ( zip ) => {
     return new Promise(( resolve, reject ) => {
         $.ajax(`http://api.openweathermap.org/data/2.5/forecast?zip=${zip},us&APPID=${owmKey}&units=imperial`).done((data) => {
         resolve( data );
+        console.log('data:', data);
         currentZip = zip;        
         }).fail(( error ) => {
             reject( error );

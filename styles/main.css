@@ -10,7 +10,8 @@ body {
   color: #161616;
   font-family: 'Roboto', sans-serif;
   background-color: currentColor;
-  padding-bottom: 70px; }
+  padding-bottom: 70px;
+  padding-top: 70px; }
 
 #weatherImgs {
   text-align: center;
@@ -278,4 +279,4 @@ body {
   color: #ffe605; }
 
 .width {
-  width: 200px; }
+  width: 300px; }

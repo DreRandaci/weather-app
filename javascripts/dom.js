@@ -1,10 +1,10 @@
 'use strict';
 
-const currentDayDomString = ( weather ) => {                   
+const currentDayDomString = ( weather, divName ) => {                   
     let str = '';
     str += `<div class="row">`;
     str +=      `<div class="col-md-6 col-md-offset-3">`;
-    str +=          `<div class="panel panel-default animated fadeIn">`;    
+    str +=          `<div class="box panel panel-default animated fadeIn">`;    
     str +=              `<div class="panel-heading"><h2>${weather.city.name}</h2><p>${weather.city.country}</p></div>`;    
     str +=                  `<div class="panel-body panel-color">`;
     str +=                      `<div class="caption">`;  
@@ -19,8 +19,8 @@ const currentDayDomString = ( weather ) => {
     str +=                           `<h4>Conditions: ${weather.list[0].weather[0].description}<img src='http://openweathermap.org/img/w/${weather.list[0].weather[0].icon}.png'></h4>`;                   
     str +=                           `<h4>Air Pressure: ${weather.list[0].main.pressure}</h4>`;                              
     str +=                           `<h4>Wind Speed: ${weather.list[0].wind.speed}mp/h</h4>`;                
-    str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">3 Day Forecast</button> <button type='button' id="fiveDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">5 Day Forecast</button> <button type='button' class='saveForecastBtn btn btn-success'>Save Forecast</button> `;
-    str +=                           `<div class='pull-right'><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></div>`;
+    str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">3 Day Forecast</button> <button type='button' id="fiveDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">5 Day Forecast</button> <button type='button' class='saveForecastBtn currentForecastBtn btn btn-default'>Save Forecast</button> `;
+    str +=                           `<div class='padding'><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></div>`;
     str +=                      `</div>`;
     str +=                  `</div>`;
     str +=              `</div>`;
@@ -59,7 +59,7 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
                     str +=       `<td>${dt.weather[0].description}<img src='http://openweathermap.org/img/w/${dt.weather[0].icon}.png'></td>`;                   
                     str +=       `<td>${dt.main.pressure}</td>`;                              
                     str +=       `<td>${dt.wind.speed}MP/H</td>`;                    
-                    str +=       `<td><button type='button' class='saveForecastBtn btn btn-success btn-sm'>Save Forecast</button></td>`;                    
+                    str +=       `<td><button type='button' class='saveForecastBtn extndForecastBtn btn btn-default btn-sm'>Save</button></td>`;                    
                     str +=       `<td><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></td>`;                    
                     str +=       `</tr>`;                                                 
                 } 
@@ -93,7 +93,7 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
                     str +=       `<td>${dt.weather[0].description}<img src='http://openweathermap.org/img/w/${dt.weather[0].icon}.png'></td>`;                   
                     str +=       `<td>${dt.main.pressure}</td>`;                              
                     str +=       `<td>${dt.wind.speed}MP/H</td>`;                    
-                    str +=       `<td><button type='button' class='saveForecastBtn btn btn-success btn-sm'>Save Forecast</button></td>`;                    
+                    str +=       `<td><button type='button' class='saveForecastBtn extndForecastBtn btn btn-default btn-sm'>Save</button></td>`;                    
                     str +=       `<td><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></td>`;                    
                     str +=       `</tr>`;                
                 } 

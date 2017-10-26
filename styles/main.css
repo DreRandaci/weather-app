@@ -126,3 +126,6 @@ body {
   -webkit-box-shadow: 0px 0px 30px 5px #353434;
   -moz-box-shadow: 0px 0px 30px 5px #353434;
   box-shadow: 0px 0px 20px 5px #353434; }
+
+.min-height {
+  min-height: 400px; }

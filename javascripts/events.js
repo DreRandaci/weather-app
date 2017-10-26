@@ -49,39 +49,49 @@ const validateZip = (zip) => {
     }                 
 };
 
-const showInputContainer = () => {
+const showInputAndMyWeather = () => {
     $('.inputContainer').removeClass('hidden');
     $("#authScreenContainer").remove();
+    $('.navbar-fixed-top').removeClass('hidden');
 };
 
 const googleAuth = () => {
     $("#googleBtn").click( ( e ) => {
         firebaseApi.authenticateGoogle().then(( result ) => {
             console.log('results in googleAuth:', result);
-            showInputContainer();
+            showInputAndMyWeather();
         }).catch(( error ) => {
             console.log('error in authenticateGoogle');
         });
     });
 };
 
-const saveForecast = () => {
+const saveForecastEvents = () => {
     $('body').on('click', '.saveForecastBtn', (e) => {
         if (e.target.classList.contains('currentForecastBtn')) {
             let parentContainer = e.target.closest('.row');
             console.log('parentContainer:', parentContainer);
+            // let newForecast = {
+            //     "title": $(parentContainer).find('.title').html(),
+            //     "overview": $(parentContainer).find('.overview').html(),
+            //     "poster_path": $(parentContainer).find('.poster_path').attr('src').split('/').pop(),
+            //     "rating": 0,
+            //     "isWatched": false,
+            //     "uid": ""
+            // };
         } else {
             let parentTable = e.target.closest('.table');                
             console.log('parentTable:', parentTable);
+            // let newForecast = {
+            //     "title": $(parentTable).find('.title').html(),
+            //     "overview": $(parentTable).find('.overview').html(),
+            //     "poster_path": $(parentTable).find('.poster_path').attr('src').split('/').pop(),
+            //     "rating": 0,
+            //     "isWatched": false,
+            //     "uid": ""
+            // };
         }        
-        // let newMovie = {
-        //     "title": $(parentContainer).find('.title').html(),
-        //     "overview": $(parentContainer).find('.overview').html(),
-        //     "poster_path": $(parentContainer).find('.poster_path').attr('src').split('/').pop(),
-        //     "rating": 0,
-        //     "isWatched": false,
-        //     "uid": ""
-        // };
+        
         // firebaseApi.saveMovie(newMovie).then(() => {
         //     $(parentContainer).remove();
         // }).catch((err) => {
@@ -90,12 +100,28 @@ const saveForecast = () => {
     });
 };
 
+const myLinks = () => {
+    $('.navbar-fixed-top').click(( e ) => {
+        if (e.target.id === 'weatherHome') {
+            $('#searchContainer').addClass('hide');
+            $('#myMoviesContainer').removeClass('hide');
+            $('#authScreenContainer').addClass('hide'); 
+            // getMahMovies();           
+        } else if (e.target.id === 'myWeather') {            
+            $('#searchContainer').addClass('hide');
+            $('#myMoviesContainer').addClass('hide');
+            $('#authScreenContainer').removeClass('hide');
+        } 
+    });
+};
+
 const init = () => {
     pressEnter();
     submitBtnClick();
     extendedForecastClick();
     googleAuth();
-    saveForecast();
+    saveForecastEvents();
+    myLinks();
 };
 
 module.exports = { init };

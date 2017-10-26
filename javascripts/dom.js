@@ -1,6 +1,6 @@
 'use strict';
 
-const currentDayDomString = ( weather ) => {                   
+const currentDayDomString = ( weather, divName ) => {                   
     let str = '';
     str += `<div class="row">`;
     str +=      `<div class="col-md-6 col-md-offset-3">`;

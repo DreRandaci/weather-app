@@ -56,7 +56,7 @@ const hideWthrIcons = () => {
 
 const showInputContainer = () => {
     $('.inputContainer').removeClass('hidden');
-    $("#googleBtn").hide();
+    $("#authScreenContainer").remove();
 };
 
 const init = () => {

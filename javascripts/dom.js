@@ -4,7 +4,7 @@ const currentDayDomString = ( weather ) => {
     let str = '';
     str += `<div class="row">`;
     str +=      `<div class="col-md-6 col-md-offset-3">`;
-    str +=          `<div class="panel panel-default animated fadeIn opacity">`;    
+    str +=          `<div class="panel panel-default animated fadeIn">`;    
     str +=              `<div class="panel-heading"><h2>${weather.city.name}</h2><p>${weather.city.country}</p></div>`;    
     str +=                  `<div class="panel-body panel-color">`;
     str +=                      `<div class="caption">`;  
@@ -16,10 +16,11 @@ const currentDayDomString = ( weather ) => {
     str +=                          `<h3>Current Temperature: <span class='temp-low'>${weather.list[0].main.temp.toFixed()}˚F</span></h3>`;             
                                 }                                                          
     str +=                           `<p>H/L: ${weather.list[0].main.temp_max.toFixed()}˚/${weather.list[2].main.temp_min.toFixed()}˚</p>`;                   
-    str +=                           `<h4>Conditions: ${weather.list[0].weather[0].description}</h4>`;                   
+    str +=                           `<h4>Conditions: ${weather.list[0].weather[0].description}<img src='http://openweathermap.org/img/w/${weather.list[0].weather[0].icon}.png'></h4>`;                   
     str +=                           `<h4>Air Pressure: ${weather.list[0].main.pressure}</h4>`;                              
     str +=                           `<h4>Wind Speed: ${weather.list[0].wind.speed}mp/h</h4>`;                
-    str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">3 Day Forecast</button> <button type='button' id="fiveDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">5 Day Forecast</button> <button type='button' id='saveForecastBtn' class='btn btn-success'>Save Forecast</button>`;
+    str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">3 Day Forecast</button> <button type='button' id="fiveDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">5 Day Forecast</button> <button type='button' class='saveForecastBtn btn btn-success'>Save Forecast</button> `;
+    str +=                           `<div class='pull-right'><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></div>`;
     str +=                      `</div>`;
     str +=                  `</div>`;
     str +=              `</div>`;
@@ -40,6 +41,8 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
         str +=       `<th>Conditions</th>`;                   
         str +=       `<th>Air Pressure</th>`;
         str +=       `<th>Wind Speed MP/H</th>`;                                                  
+        str +=       `<th>My Weather</th>`;                                                  
+        str +=       `<th>Share</th>`;                                                  
         str +=       `</tr>`; 
         str +=       `<tr>`;        
         hourlyForecasts.forEach(( wthr, ind ) => {            
@@ -53,9 +56,11 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
                     } else {
                         str +=       `<td><span class='temp-low'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
                     }                          
-                    str +=       `<td>${dt.weather[0].description}</td>`;                   
+                    str +=       `<td>${dt.weather[0].description}<img src='http://openweathermap.org/img/w/${dt.weather[0].icon}.png'></td>`;                   
                     str +=       `<td>${dt.main.pressure}</td>`;                              
                     str +=       `<td>${dt.wind.speed}MP/H</td>`;                    
+                    str +=       `<td><button type='button' class='saveForecastBtn btn btn-success btn-sm'>Save Forecast</button></td>`;                    
+                    str +=       `<td><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></td>`;                    
                     str +=       `</tr>`;                                                 
                 } 
             });                               
@@ -69,7 +74,9 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
         str +=       `<th>High</th>`;                                             
         str +=       `<th>Conditions</th>`;                   
         str +=       `<th>Air Pressure</th>`;
-        str +=       `<th>Wind Speed MP/H</th>`;                                                  
+        str +=       `<th>Wind Speed MP/H</th>`;
+        str +=       `<th>My Weather</th>`;                                                  
+        str +=       `<th>Share</th>`;                                                                                                    
         str +=       `</tr>`; 
         str +=       `<tr>`;   
         hourlyForecasts.forEach(( wthr, ind ) => {
@@ -83,9 +90,11 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
                         } else {
                             str +=       `<td><span class='temp-low'>${dt.main.temp_max.toFixed()}˚</span></td>`; 
                         }                           
-                    str +=       `<td>${dt.weather[0].description}</td>`;                   
+                    str +=       `<td>${dt.weather[0].description}<img src='http://openweathermap.org/img/w/${dt.weather[0].icon}.png'></td>`;                   
                     str +=       `<td>${dt.main.pressure}</td>`;                              
                     str +=       `<td>${dt.wind.speed}MP/H</td>`;                    
+                    str +=       `<td><button type='button' class='saveForecastBtn btn btn-success btn-sm'>Save Forecast</button></td>`;                    
+                    str +=       `<td><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></td>`;                    
                     str +=       `</tr>`;                
                 } 
             });          

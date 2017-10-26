@@ -42,28 +42,16 @@ const validateZip = (zip) => {
     if (zip.length === 5) {
         $('#invalidContainer').empty();
         dom.clearDom();
-        dom.clearExtDom();
-        hideWthrIcons();        
+        dom.clearExtDom();       
         owm.getConfigData(zip);
     } else {
         $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A Valid <strong>Number</strong><h5>`);
     }                 
 };
 
-const hideWthrIcons = () => {
-    $('#weatherImgs').hide();
-};
-
 const showInputContainer = () => {
     $('.inputContainer').removeClass('hidden');
     $("#authScreenContainer").remove();
-};
-
-const init = () => {
-    pressEnter();
-    submitBtnClick();
-    extendedForecastClick();
-    googleAuth();
 };
 
 const googleAuth = () => {
@@ -75,6 +63,39 @@ const googleAuth = () => {
             console.log('error in authenticateGoogle');
         });
     });
+};
+
+const saveForecast = () => {
+    $('body').on('click', '.saveForecastBtn', (e) => {
+        if (e.target.classList.contains('currentForecastBtn')) {
+            let parentContainer = e.target.closest('.row');
+            console.log('parentContainer:', parentContainer);
+        } else {
+            let parentTable = e.target.closest('.table');                
+            console.log('parentTable:', parentTable);
+        }        
+        // let newMovie = {
+        //     "title": $(parentContainer).find('.title').html(),
+        //     "overview": $(parentContainer).find('.overview').html(),
+        //     "poster_path": $(parentContainer).find('.poster_path').attr('src').split('/').pop(),
+        //     "rating": 0,
+        //     "isWatched": false,
+        //     "uid": ""
+        // };
+        // firebaseApi.saveMovie(newMovie).then(() => {
+        //     $(parentContainer).remove();
+        // }).catch((err) => {
+        //     console.log(err);
+        // });
+    });
+};
+
+const init = () => {
+    pressEnter();
+    submitBtnClick();
+    extendedForecastClick();
+    googleAuth();
+    saveForecast();
 };
 
 module.exports = { init };

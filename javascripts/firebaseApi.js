@@ -37,7 +37,6 @@ const saveWeather = (newForecast) => {
 
 const getWeatherList = () => {
     let weatherArray = [];
-    console.log('getWeatherList entered');
     return new Promise(( resolve, reject ) => {
         $.ajax(`${firebaseKey.databaseURL}/weather.json?orderBy="uid"&equalTo="${userUid}"`).then((fbWeather) => {
             if (fbWeather != null) {
@@ -47,6 +46,7 @@ const getWeatherList = () => {
             });
         } 
             resolve(weatherArray);
+            console.log('weatherArray:', weatherArray);
         }).catch(( err ) => {
             console.log('err in getWeatherList:', err);
         });

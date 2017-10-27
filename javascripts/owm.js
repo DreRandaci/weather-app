@@ -21,7 +21,8 @@ const getConfigData = (zip) => {
     owmConfiguration(zip).then(( weather ) => {         
         showCurrentDayForecast(weather);        
     }).catch(( error ) => {
-        console.log('error in getConfig:', error );
+        console.log('error in getConfigData:', error );
+        $('#invalidContainer').html(`<h5 class="text-danger">Please Enter A Valid <strong>Zip Code</strong><h5>`);
     });
 };
 
@@ -40,6 +41,7 @@ const showExtendedForecast = (targetId) => {
         dom.extendedForecastDomString(weather, hourlyForecasts, targetId);
     }).catch(( error ) => {
         console.log('error in getConfig:', error );
+        $('#invalidContainer').html(`<h5 class="text-danger"><strong>Error</strong> please try again<h5>`);
     });
 };
 

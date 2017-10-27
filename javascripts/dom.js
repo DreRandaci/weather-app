@@ -1,24 +1,24 @@
 'use strict';
 
-const currentDayDomString = ( weather, divName ) => {                   
+const currentDayDomString = ( weather, divName ) => {                  
     let str = '';
     str += `<div class="row">`;
     str +=      `<div class="col-md-6 col-md-offset-3">`;
     str +=          `<div class="box panel panel-default animated fadeIn">`;    
-    str +=              `<div class="panel-heading"><h2>${weather.city.name}</h2><p>${weather.city.country}</p></div>`;    
+    str +=              `<div class="panel-heading"><h2 class='city-name'>${weather.city.name}</h2><p class='city-country'>${weather.city.country}</p></div>`;    
     str +=                  `<div class="panel-body panel-color">`;
     str +=                      `<div class="caption">`;  
                                 if (weather.list[0].main.temp.toFixed() <= 75 && weather.list[0].main.temp.toFixed() > 50) {                      
-    str +=                          `<h3>Current Temperature: <span class='temp-default'>${weather.list[0].main.temp.toFixed()}˚F</span></h3>`;             
+    str +=                          `<h3 class='current-temp'>Current Temperature: <span class='temp-default'> ${weather.list[0].main.temp.toFixed()}˚F </span></h3>`;             
                                 } else if (weather.list[0].main.temp.toFixed() > 75) {
-    str +=                          `<h3>Current Temperature: <span class='temp-high'>${weather.list[0].main.temp.toFixed()}˚F</span></h3>`;             
+    str +=                          `<h3 class='current-temp'>Current Temperature: <span class='temp-high'> ${weather.list[0].main.temp.toFixed()}˚F </span></h3>`;             
                                 } else {
-    str +=                          `<h3>Current Temperature: <span class='temp-low'>${weather.list[0].main.temp.toFixed()}˚F</span></h3>`;             
+    str +=                          `<h3 class='current-temp'>Current Temperature: <span class='temp-low'> ${weather.list[0].main.temp.toFixed()}˚F </span></h3>`;             
                                 }                                                          
-    str +=                           `<p>H/L: ${weather.list[0].main.temp_max.toFixed()}˚/${weather.list[2].main.temp_min.toFixed()}˚</p>`;                   
-    str +=                           `<h4>Conditions: ${weather.list[0].weather[0].description}<img src='http://openweathermap.org/img/w/${weather.list[0].weather[0].icon}.png'></h4>`;                   
-    str +=                           `<h4>Air Pressure: ${weather.list[0].main.pressure}</h4>`;                              
-    str +=                           `<h4>Wind Speed: ${weather.list[0].wind.speed}mp/h</h4>`;                
+    str +=                           `<p class='high-low'>H/L: ${weather.list[0].main.temp_max.toFixed()}˚/${weather.list[2].main.temp_min.toFixed()}˚</p>`;                   
+    str +=                           `<h4 class='conditions'>Conditions: ${weather.list[0].weather[0].description}<img class='icon-path' src='http://openweathermap.org/img/w/${weather.list[0].weather[0].icon}.png'></h4>`;                   
+    str +=                           `<h4 class='air-pressure'>Air Pressure: ${weather.list[0].main.pressure}</h4>`;                              
+    str +=                           `<h4 class='wind-speed'>Wind Speed: ${weather.list[0].wind.speed}mp/h</h4>`;                
     str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">3 Day Forecast</button> <button type='button' id="fiveDayBtn" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg">5 Day Forecast</button> <button type='button' class='saveForecastBtn currentForecastBtn btn btn-default'>Save Forecast</button> `;
     str +=                           `<div class='padding'><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></div>`;
     str +=                      `</div>`;

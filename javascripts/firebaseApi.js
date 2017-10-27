@@ -46,7 +46,6 @@ const getWeatherList = () => {
             });
         } 
             resolve(weatherArray);
-            console.log('weatherArray:', weatherArray);
         }).catch(( err ) => {
             console.log('err in getWeatherList:', err);
         });

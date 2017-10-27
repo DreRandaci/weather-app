@@ -41,7 +41,7 @@ const validateZip = (zip) => {
     parseInt(zip);
     if (zip.length === 5) {
         $('#invalidContainer').empty();
-        dom.clearDom();
+        dom.clearDom('weather');
         dom.clearExtDom();       
         owm.getConfigData(zip);
     } else {
@@ -58,7 +58,6 @@ const showInputAndNavbar = () => {
 const googleAuth = () => {
     $("#googleBtn").click( ( e ) => {
         firebaseApi.authenticateGoogle().then(( result ) => {
-            console.log('results in googleAuth:', result);
             showInputAndNavbar();
         }).catch(( error ) => {
             console.log('error in authenticateGoogle');
@@ -83,22 +82,24 @@ const saveForecastEvents = () => {
                 "uid": ""                
             };
             firebaseApi.saveWeather(newForecast).then((result) => {
-                console.log('result:', result);
                 // $(parentContainer).remove();
             }).catch((err) => {
-                console.log(err);
+                console.log('err in saveForecastEvents promise', err);
             });
-            console.log('newForecast:', newForecast);
+
             } else {
                 let parentTable = e.target.closest('.table');                
                 console.log('parentTable:', parentTable);
                 // let newForecast = {
-                //     "title": $(parentTable).find('.title').html(),
-                //     "overview": $(parentTable).find('.overview').html(),
-                //     "poster_path": $(parentTable).find('.poster_path').attr('src').split('/').pop(),
-                //     "rating": 0,
-                //     "isWatched": false,
-                //     "uid": ""
+                //     "cityName": $(parentTable).find('.city-name').html(),
+                //     "cityCountry": $(parentTable).find('.city-country').html(),
+                //     "currentTemp": $(parentTable).find('.current-temp').html().split(' ', 5).pop(),
+                //     "highLow": $(parentTable).find('.high-low').html(),
+                //     "conditions": $(parentTable).find('.conditions').html().split('<', 1).pop(),                
+                //     "airPressure": $(parentTable).find('.air-pressure').html().split(' ', 5).pop(),               
+                //     "windSpeed": $(parentTable).find('.wind-speed').html(),                
+                //     "icon": $(parentTable).find('.icon-path').attr('src').split('/').pop(),
+                //     "uid": ""                
                 // };
             }        
         
@@ -111,10 +112,9 @@ const saveForecastEvents = () => {
 };
 
 const getMyWeather = () => {
-    firebaseApi.getWeatherList().then((results) => {
-        console.log('results in getMyWeather:', results);
-        // dom.clearDom('moviesMine');
-        // dom.domString(results, tmdb.getImgConfig(), 'moviesMine', false);
+    firebaseApi.getWeatherList().then((savedWthr) => {
+        dom.clearDom('savedWeather');
+        dom.printSavedWthr( savedWthr );
     }).catch((err) => {
         console.log("error in getMovieList:", err);
     });
@@ -123,13 +123,17 @@ const getMyWeather = () => {
 const myLinks = () => {
     $('.navbar-fixed-top').click(( e ) => {
         if (e.target.id === 'forecastHome') {
-            $('#weatherAndInputField').removeClass('hide');
+            $('#weather').removeClass('hide');
             $('#myWeatherHeaderHidden').addClass('hidden');
             $('#myWeatherHeader').removeClass('hidden');                      
+            $('#savedWeather').addClass('hidden');
+            $('.inputContainer').removeClass('hide');                      
         } else if (e.target.id === 'myWeather') {            
-            $('#weatherAndInputField').addClass('hide');
+            $('#weather').addClass('hide');
+            $('.inputContainer').addClass('hide');
             $('#myWeatherHeaderHidden').removeClass('hidden');
             $('#myWeatherHeader').addClass('hidden');
+            $('#savedWeather').removeClass('hidden');
             getMyWeather(); 
         } 
     });

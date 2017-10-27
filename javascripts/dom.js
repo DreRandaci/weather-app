@@ -1,6 +1,6 @@
 'use strict';
 
-const currentDayDomString = ( weather, divName ) => {                  
+const currentDayDomString = ( weather ) => {                  
     let str = '';
     str += `<div class="row">`;
     str +=      `<div class="col-md-6 col-md-offset-3">`;
@@ -27,13 +27,42 @@ const currentDayDomString = ( weather, divName ) => {
     str +=          `</div>`;           
     str +=      `</div>`;
     str +=      `</div>`;
-    printCurrentWthr(str);
+    printCurrentWthr(str, 'weather');
+};
+
+const printSavedWthr = (savedWthr) => {
+    let str = '';
+    savedWthr.forEach((myWeather) => {   
+        str += `<div class="row">`;
+        str +=      `<div class="col-md-4 col-md-offset-3">`;
+        str +=          `<div class="box thumbnail animated fadeIn panel-color">`;    
+        str +=              `<div class="caption">`; 
+        str +=                          `<h2 class='city-name'>${myWeather.cityName}</h2><p class='city-country'>${myWeather.cityCountry}</p>`;
+        str +=                          `<p class='city-country'>${myWeather.cityCountry}</p>`;
+                                    if (myWeather.currentTemp <= 75 && myWeather.currentTemp > 50) {                      
+        str +=                          `<h3 class='current-temp'>H/L: <span class='temp-default'> ${myWeather.currentTemp} </span></h3>`;             
+                                    } else if (myWeather.currentTemp > 75) {
+        str +=                          `<h3 class='current-temp'>H/L: <span class='temp-high'> ${myWeather.currentTemp} </span></h3>`;             
+                                    } else {
+        str +=                          `<h3 class='current-temp'>H/L: <span class='temp-low'> ${myWeather.currentTemp} </span></h3>`;             
+                                    }                                                          
+        str +=                           `<h4 class='conditions'>Conditions: ${myWeather.conditions}<img class='icon-path' src='http://openweathermap.org/img/w/${myWeather.icon}'></h4>`;                   
+        str +=                           `<h4 class='air-pressure'>Air Pressure: ${myWeather.airPressure}</h4>`;                              
+        str +=                           `<h4 class='wind-speed'>Wind Speed: ${myWeather.windSpeed}mp/h</h4>`;                
+        str +=                           `<button type='button' id="threeDayBtn" class="btn btn-warning"">Delete</button>`;
+        // str +=                           `<div class='padding'><a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a> <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></div>`;
+        str +=                      `</div>`;
+        str +=                  `</div>`;
+        str +=              `</div>`;
+        str +=          `</div>`;           
+    });
+    printCurrentWthr(str, 'savedWeather');
 };
 
 const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {                 
     let str = '';
     if ( targetId === 'threeDayBtn' ) { 
-        $('.forecastTitle').html('3 Day Forecast');
+        $('.forecastTitle').html(`3 Day Forecast for ${weather.city.name}`);
         str +=     `<table class="table">`;
         str +=       `<tr>`;                        
         str +=       `<th>Date</th>`;    
@@ -104,12 +133,12 @@ const extendedForecastDomString = ( weather, hourlyForecasts, targetId ) => {
     printExtWthr(str);
 };
 
-const clearDom = () => {
-    $('#weather').empty();
+const clearDom = (div) => {
+    $(`#${div}`).empty();
 };
 
-const printCurrentWthr = (str) => {
-    $('#weather').append(str);
+const printCurrentWthr = (str, div) => {
+    $(`#${div}`).append(str);
 };
 
 const clearExtDom = () => {
@@ -120,4 +149,4 @@ const printExtWthr = (str) => {
     $('#extendedForecast').append(str);
 };
 
-module.exports = { clearDom, currentDayDomString, extendedForecastDomString, clearExtDom };
+module.exports = { clearDom, currentDayDomString, extendedForecastDomString, clearExtDom, printSavedWthr };

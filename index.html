@@ -15,7 +15,7 @@
         <div class="container">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id='weatherHome'>Forecast <span class="sr-only">(current)</span></a></li>
+                    <li><a id='forecastHome'>Forecast <span class="sr-only">(current)</span></a></li>
                     <li><a id='myWeather'>My Weather</a></li>
                 </ul>
             </div>
@@ -26,45 +26,54 @@
         <!-- JUMBOTRON CONTAINER -->
         <div class='jumbotron jumboBox added-margin text-center min-height'>
             <main id='weatherImgs'>                          
-                <h1 class='h1-main-header'>Weather
+                <h1 id='myWeatherHeader' class='h1-main-header'>Weather
                 <div class="icon sunny">
                 <div class="sun">
                     <div class="rays"></div>
                 </div>
                 </div>
-                </h1>                                                                    
+                </h1> 
+                <h1 id='myWeatherHeaderHidden' class='h1-main-header hidden'>My Weather
+                    <div class="icon sunny">
+                    <div class="sun">
+                        <div class="rays"></div>
+                    </div>
+                    </div>
+                    </h1>                                                                               
             </main>
             <!-- WEATHER OUTPUT CONTAINER -->
-            <div class='container'>
-                <div id='weather' class='added-margin'></div>
-            </div>            
-                <!-- ENTER A VALID ZIP CONTAINER -->
-            <div id='invalidContainer' class='text-center'></div>        
-                <!-- ZIP INPUT CONTAINER -->
-            <div class='container hidden inputContainer'>
-                <div class="row">        
-                    <div class="col-xs-4 col-xs-offset-4">
-                        <div class="input-group box">
-                            <input type="text" id='input' class="form-control" aria-label="..." placeholder="Enter Zip">
-                            <div class="input-group-btn">
-                                <button type="button" id='subBtn' class="btn btn-warning" aria-expanded="false">Submit</button>
-                            </div><!-- /btn-group -->
-                        </div><!-- /input-group -->                                        
-                    </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->            
-            </div>
-                    <!-- GOOLE BTN CONTAINER -->
-                    <div id='authScreenContainer' class='container'>
-                        <div class='row'>
-                            <div class='col-xs-4 col-xs-offset-4'>
-                                <div id='googleBtn'>
-                                    <a class="width box btn btn-lg btn-block btn-social btn-google">
-                                        <span class="fa fa-google"></span><div class='text-center'>Sign in with Google</div>
-                                    </a>
-                                </div>
-                            </div>              
+            <div id='weatherAndInputField'>
+                <div class='container'>
+                    <div id='weather' class='added-margin'></div>
+                </div>            
+                    <!-- ENTER A VALID ZIP CONTAINER -->
+                <div id='invalidContainer' class='text-center'></div>        
+                    <!-- ZIP INPUT CONTAINER -->
+                <div class='container hidden inputContainer'>
+                    <div class="row">        
+                        <div class="col-xs-4 col-xs-offset-4">
+                            <div class="input-group box">
+                                <input type="text" id='input' class="form-control" aria-label="..." placeholder="Enter Zip">
+                                <div class="input-group-btn">
+                                    <button type="button" id='subBtn' class="btn btn-warning" aria-expanded="false">Submit</button>
+                                </div><!-- /btn-group -->
+                            </div><!-- /input-group -->                                        
+                        </div><!-- /.col-lg-6 -->
+                    </div><!-- /.row -->            
+                </div>
+                        <!-- GOOLE BTN CONTAINER -->
+                        <div id='authScreenContainer' class='container'>
+                            <div class='row'>
+                                <div class='col-xs-4 col-xs-offset-4'>
+                                    <div id='googleBtn'>
+                                        <a class="width box btn btn-lg btn-block btn-social btn-google">
+                                            <span class="fa fa-google"></span><div class='text-center'>Sign in with Google</div>
+                                        </a>
+                                    </div>
+                                </div>              
+                            </div>
                         </div>
-                    </div>
+            </div>
         </div>
     </div>
     

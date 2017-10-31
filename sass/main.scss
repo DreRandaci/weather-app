@@ -131,7 +131,7 @@ body {
 .width {
   width: 350px;
 }
-.padding {
+.padding-top {
   padding-top: 1em;
 }
 
@@ -148,4 +148,17 @@ body {
 }
 .min-height {
   min-height: 400px;
+}
+.fixed {
+  min-height: 410px;
+  min-width: 330px;
+}
+.padding {
+  padding-top: 1em;
+}
+.social-padding {
+  padding-top: .5em;
+}
+.delete-margin {
+  margin-top: 10px;
 }

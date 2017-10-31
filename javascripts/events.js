@@ -80,16 +80,16 @@ const saveForecastEvents = () => {
                 "uid": ""                
             };
             firebaseApi.saveWeather(newForecast).then((result) => {
-                $(parent).remove();
+                $('.currentForecastBtn').addClass('disabled').html('Saved');
             }).catch((err) => {
                 console.log('err in saveForecastEvents promise', err);
             });
 
             } else {
-                let parent = e.target.closest('.modal');                
-                console.log('parent:', parent);
+                let title = e.target.closest('.modal');                
+                let parent = e.target.closest('tr');                
                 let newForecast = {
-                    "cityName": $(parent).find('.forecastTitle').html(),
+                    "cityName": $(title).find('.city-name-span').html(),
                     "time": $(parent).find('.time').html(),
                     "currentTemp": $(parent).find('.current-temp').html(),
                     "conditions": $(parent).find('.conditions').html().split('<', 1).pop(),                
@@ -97,15 +97,14 @@ const saveForecastEvents = () => {
                     "windSpeed": $(parent).find('.wind-speed').html(),                
                     "icon": $(parent).find('.icon-path').attr('src').split('/').pop(),
                     "uid": ""                
-                };
-                console.log('new forecast table:', newForecast);
-            }        
-        
-        // firebaseApi.saveMovie(newForecast).then(() => {
-        //     $(parentContainer).remove();
-        // }).catch((err) => {
-        //     console.log(err);
-        // });
+                };               
+                firebaseApi.saveWeather(newForecast).then((result) => {
+                    $(e.target).addClass('disabled').html('Saved');
+                    // $(parent).closest('tr').remove();
+                }).catch((err) => {
+                    console.log('err in saveForecastEvents promise', err);
+                });
+            }                        
     });
 };
 

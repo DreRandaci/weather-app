@@ -68,39 +68,37 @@ const googleAuth = () => {
 const saveForecastEvents = () => {
     $('body').on('click', '.saveForecastBtn', (e) => {
         if (e.target.classList.contains('currentForecastBtn')) {
-            let parentContainer = e.target.closest('.row');
-            // console.log('parentContainer:', parentContainer);
+            let parent = e.target.closest('.row');
             let newForecast = {
-                "cityName": $(parentContainer).find('.city-name').html(),
-                "cityCountry": $(parentContainer).find('.city-country').html(),
-                "currentTemp": $(parentContainer).find('.current-temp').html().split(' ', 5).pop(),
-                "highLow": $(parentContainer).find('.high-low').html(),
-                "conditions": $(parentContainer).find('.conditions').html().split('<', 1).pop(),                
-                "airPressure": $(parentContainer).find('.air-pressure').html().split(' ', 5).pop(),               
-                "windSpeed": $(parentContainer).find('.wind-speed').html(),                
-                "icon": $(parentContainer).find('.icon-path').attr('src').split('/').pop(),
+                "cityName": $(parent).find('.city-name').html(),
+                "time": $(parent).find('.time').html(),
+                "currentTemp": $(parent).find('.current-temp').html().split(' ', 5).pop(),
+                "conditions": $(parent).find('.conditions').html().split('<', 1).pop(),                
+                "airPressure": $(parent).find('.air-pressure').html().split(' ', 5).pop(),               
+                "windSpeed": $(parent).find('.wind-speed').html(),                
+                "icon": $(parent).find('.icon-path').attr('src').split('/').pop(),
                 "uid": ""                
             };
             firebaseApi.saveWeather(newForecast).then((result) => {
-                // $(parentContainer).remove();
+                $(parent).remove();
             }).catch((err) => {
                 console.log('err in saveForecastEvents promise', err);
             });
 
             } else {
-                let parentTable = e.target.closest('.table');                
-                console.log('parentTable:', parentTable);
-                // let newForecast = {
-                //     "cityName": $(parentTable).find('.city-name').html(),
-                //     "cityCountry": $(parentTable).find('.city-country').html(),
-                //     "currentTemp": $(parentTable).find('.current-temp').html().split(' ', 5).pop(),
-                //     "highLow": $(parentTable).find('.high-low').html(),
-                //     "conditions": $(parentTable).find('.conditions').html().split('<', 1).pop(),                
-                //     "airPressure": $(parentTable).find('.air-pressure').html().split(' ', 5).pop(),               
-                //     "windSpeed": $(parentTable).find('.wind-speed').html(),                
-                //     "icon": $(parentTable).find('.icon-path').attr('src').split('/').pop(),
-                //     "uid": ""                
-                // };
+                let parent = e.target.closest('.modal');                
+                console.log('parent:', parent);
+                let newForecast = {
+                    "cityName": $(parent).find('.forecastTitle').html(),
+                    "time": $(parent).find('.time').html(),
+                    "currentTemp": $(parent).find('.current-temp').html(),
+                    "conditions": $(parent).find('.conditions').html().split('<', 1).pop(),                
+                    "airPressure": $(parent).find('.air-pressure').html().split(' ', 5).pop(),               
+                    "windSpeed": $(parent).find('.wind-speed').html(),                
+                    "icon": $(parent).find('.icon-path').attr('src').split('/').pop(),
+                    "uid": ""                
+                };
+                console.log('new forecast table:', newForecast);
             }        
         
         // firebaseApi.saveMovie(newForecast).then(() => {
@@ -139,6 +137,17 @@ const myLinks = () => {
     });
 };
 
+const deleteWeatherEvent = () => {
+    $('body').on('click', '.delete', ( e ) => {
+        let weatherId = $( e.target ).data( 'firebase-id' );
+        firebaseApi.deleteWeather( weatherId ).then(( results ) => {
+            getMyWeather();
+        }).catch(( err ) => {
+            console.log( 'error in deleteMovie:', err );
+        });
+    });
+};
+
 const init = () => {
     pressEnter();
     submitBtnClick();
@@ -146,6 +155,7 @@ const init = () => {
     googleAuth();
     saveForecastEvents();
     myLinks();
+    deleteWeatherEvent();
 };
 
 module.exports = { init };

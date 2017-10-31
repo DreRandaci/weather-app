@@ -52,4 +52,17 @@ const getWeatherList = () => {
     });
 };
 
-module.exports = { setKey, authenticateGoogle, getWeatherList, saveWeather };
+const deleteWeather = ( weatherId ) => {
+    return new Promise(( resolve, reject ) => {
+        $.ajax({
+            method: "DELETE",
+            url: `${firebaseKey.databaseURL}/weather/${weatherId}.json`            
+        }).then(( fbWeather ) => {
+            resolve(fbWeather);
+        }).catch((err) => {
+            console.log( 'err in deleteMovie:', err );
+        });
+    });
+};
+
+module.exports = { setKey, authenticateGoogle, getWeatherList, saveWeather, deleteWeather };
